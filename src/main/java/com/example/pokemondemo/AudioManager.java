@@ -8,9 +8,11 @@ import java.net.URL;
 public class AudioManager {
     private MediaPlayer mediaPlayer;
     private AudioClip buttonClip;
+    private AudioClip collisionClip;
 
     public AudioManager() {
         loadButtonSound();
+        loadCollisionSound();
     }
 
     public void startBackgroundMusic() {
@@ -19,7 +21,7 @@ public class AudioManager {
             Media sound = new Media(resource.toString());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setVolume(0.5);
+            mediaPlayer.setVolume(0.25);
             mediaPlayer.play();
         } else {
             System.out.println("Background music not found!");
@@ -35,10 +37,25 @@ public class AudioManager {
             System.out.println("Button sound not found!");
         }
     }
+    private void loadCollisionSound() {
+        URL resource = getClass().getResource("/music/collision.mp3");
+        if (resource != null) {
+            collisionClip = new AudioClip(resource.toString());
+            collisionClip.setVolume(1);
+        } else {
+            System.out.println("Button sound not found!");
+        }
+    }
 
     public void playButtonSound() {
         if (buttonClip != null) {
             buttonClip.play();
+        }
+    }
+
+    public void playCollisionSound() {
+        if (collisionClip != null) {
+            collisionClip.play();
         }
     }
 

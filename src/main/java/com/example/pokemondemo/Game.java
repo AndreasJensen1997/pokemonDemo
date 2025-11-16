@@ -9,8 +9,9 @@ import javafx.stage.Stage;
 
 public class Game {
     private static final int TILE_SIZE = 32;
-    private static final int MAP_WIDTH = 27;
+    private static final int MAP_WIDTH = 26;
     private static final int MAP_HEIGHT = 23;
+
 
     // Viewport size (what player sees)
     private static final int VIEWPORT_WIDTH = 640;
@@ -18,16 +19,17 @@ public class Game {
 
     private Stage stage;
     private TileMap tileMap;
+    private AudioManager audioManager;
     private Player player;
     private InputHandler inputHandler;
-    private AudioManager audioManager;
     private AnimationTimer gameLoop;
     private Camera camera;
 
     public Game(Stage stage) {
         this.stage = stage;
         this.tileMap = new TileMap();
-        this.player = new Player(10 * TILE_SIZE, 10 * TILE_SIZE);
+        this.audioManager = new AudioManager();
+        this.player = new Player(10 * TILE_SIZE, 10 * TILE_SIZE, tileMap,audioManager);
         this.inputHandler = new InputHandler(player);
         this.audioManager = new AudioManager();
 

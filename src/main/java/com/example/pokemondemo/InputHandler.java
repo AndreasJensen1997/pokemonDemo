@@ -29,7 +29,6 @@ import javafx.scene.Scene;
                 }
             });
         }
-
         public void handleMovement() {
             if (upPressed) player.move("up");
             else if (downPressed) player.move("down");

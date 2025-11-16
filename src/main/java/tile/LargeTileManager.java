@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class LargeTileManager {
     private TileMap tileMap;
-    private Image pokecenter, house, snorlax, tree, battleArea, npc, flower, bush;
+    private Image pokecenter, house, snorlax, tree, battleArea, npc, flower, bush,sign,PCsign;
 
     public LargeTileManager(TileMap tileMap) {
         this.tileMap = tileMap;
@@ -22,6 +22,9 @@ public class LargeTileManager {
         npc = new Image(getClass().getResourceAsStream("/sprites/npc.png"));
         flower = new Image(getClass().getResourceAsStream("/tiles/flower.png"));
         bush = new Image(getClass().getResourceAsStream("/tiles/bush.png"));
+        sign = new Image(getClass().getResourceAsStream("/tiles/sign.png"));
+        PCsign = new Image(getClass().getResourceAsStream("/tiles/PCsign.png"));
+
     }
 
     // Renders all large tiles/sprites
@@ -35,15 +38,23 @@ public class LargeTileManager {
 
         // Snorlax blocking path
         drawLargeTile(gc, snorlax, 18, 0, 2, 2);
+        // signs
+        drawLargeTile(gc, sign, 17, 15, 1, 1);
+        drawLargeTile(gc, sign, 5, 7, 1, 1);
+        drawLargeTile(gc, PCsign, 17, 8, 1, 1);
+
+
         // Battle NPC
         drawLargeTile(gc, npc, 4, 4, 1, 1);
         // flower
-        drawLargeTile(gc, flower, 14, 10, 1, 1);
-        drawLargeTile(gc, flower, 15, 10, 1, 1);
-        drawLargeTile(gc, flower, 16, 10, 1, 1);
-        drawLargeTile(gc, flower, 17, 10, 1, 1);
-        drawLargeTile(gc, flower, 18, 10, 1, 1);
-        drawLargeTile(gc, flower, 19, 10, 1, 1);
+        int j =0;
+        int flowerIncrement=1;
+        int rowIncrement =0;
+        for(j=0;j<9;j++){
+            drawLargeTile(gc, flower, 13 + flowerIncrement, 10 + rowIncrement, 1, 1);
+            flowerIncrement ++;
+        }
+
 
         // bushes
         drawLargeTile(gc, bush, 8, 7, 1, 1);
@@ -74,9 +85,10 @@ public class LargeTileManager {
         // left side
         int leftY = -4;
         int leftIncrement = 2;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 11; i++) {
             drawLargeTile(gc, tree, 0, leftY + leftIncrement, 2, 3);
             leftIncrement += 2;
+
         }
         // bottom
         int startX = -2;
